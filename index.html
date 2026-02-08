@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💘 Valentine Surprise</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .container {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .no-message {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    min-height: 40px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  button {
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #yesBtn {
+    background: white;
+    color: #ff4d6d;
+    font-size: 22px;
+    padding: 20px 40px;
+  }
+
+  #noBtn {
+    background: #ff1e4d;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+  }
+
+  .message {
+    display: none;
+    font-size: 2rem;
+    padding: 40px;
+    text-align: center;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+  <h1>CAN YOU BE MY VALENTINE?</h1>
+
+  <div class="no-message" id="noMsg"></div>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="sayYes()">YES </button>
+    <button id="noBtn" onclick="growYes()">NO </button>
+  </div>
+</div>
+
+<div class="message" id="finalMessage">
+  💖 YAYYYY! 💖<br><br>
+  Thank you for choosing YES 😘<br>
+  You just made my Valentine extra special 🌹<br><br>
+  Happy Valentine’s Day! 💘
+</div>
+
+<script>
+  let yesSize = 22;
+  let yesPadding = 40;
+  let noSize = 18;
+  let noPadding = 30;
+  let noClickCount = 0;
+
+  const noMessages = [
+    "😢 SURE KANA BA DYAN?",
+    "🥺 AYAW MO NA BA TALAGA...",
+    "😳 MAY CHOCOLATE AKO DITO...",
+    "😭 YES KANA HHUHUHU!",
+    "💔 YES KANA HINDI NA AKO MAKAHINGA...",
+    "😩 Last chance na OH",
+    "WALA KANA MAGAGAWA AKIN KANA!"
+    
+  ];
+
+  function growYes() {
+    noClickCount++;
+
+    // Show message
+    const msg = noMessages[Math.min(noClickCount - 1, noMessages.length - 1)];
+    document.getElementById("noMsg").innerText = msg;
+
+    // Grow YES / Shrink NO
+    yesSize += 12;
+    yesPadding += 20;
+    noSize = Math.max(10, noSize - 3);
+    noPadding = Math.max(10, noPadding - 5);
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    yesBtn.style.fontSize = yesSize + "px";
+    yesBtn.style.padding = "20px " + yesPadding + "px";
+
+    noBtn.style.fontSize = noSize + "px";
+    noBtn.style.padding = "15px " + noPadding + "px";
+
+    // Full screen YES
+    if (yesSize >= 120) {
+      yesBtn.style.position = "fixed";
+      yesBtn.style.top = "0";
+      yesBtn.style.left = "0";
+      yesBtn.style.width = "100vw";
+      yesBtn.style.height = "100vh";
+      yesBtn.style.fontSize = "5rem";
+      yesBtn.innerHTML = "YES 💖💖💖";
+      noBtn.style.display = "none";
+    }
+  }
+
+  function sayYes() {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
