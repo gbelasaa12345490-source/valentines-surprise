@@ -8,34 +8,32 @@
 <style>
   * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
   }
 
   body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: white;
+    justify-content: center;
+    color: #fff;
   }
 
-  .container {
+  .card {
+    background: rgba(255,255,255,0.15);
+    padding: 40px;
+    border-radius: 20px;
     text-align: center;
-    width: 100%;
-    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   }
 
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-
-  .no-message {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    min-height: 40px;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
   }
 
   .buttons {
@@ -45,111 +43,113 @@
   }
 
   button {
+    padding: 14px 28px;
+    border-radius: 30px;
     border: none;
-    border-radius: 12px;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: 0.3s;
   }
 
-  #yesBtn {
-    background: white;
+  .yes {
+    background: #fff;
     color: #ff4d6d;
-    font-size: 22px;
-    padding: 20px 40px;
   }
 
-  #noBtn {
-    background: #ff1e4d;
-    color: white;
-    font-size: 18px;
-    padding: 15px 30px;
+  .no {
+    background: #ff4d6d;
+    color: #fff;
   }
 
-  .message {
+  button:hover {
+    transform: scale(1.08);
+  }
+
+  .letter {
     display: none;
-    font-size: 2rem;
-    padding: 40px;
-    text-align: center;
+    margin-top: 30px;
+    background: #fff;
+    color: #ff4d6d;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    animation: pop 0.8s ease;
+  }
+
+  .letter p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .no-msg {
+    display: none;
+    margin-top: 25px;
+    font-size: 1.2rem;
   }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="main">
-  <h1>CAN YOU BE MY VALENTINE?</h1>
+<div class="card">
+  <h1>💌 MS.GEAN ROSE GANZON </h1>
+    <h1>💌 Will You Be My Valentine?</h1>
 
-  <div class="no-message" id="noMsg"></div>
 
   <div class="buttons">
-    <button id="yesBtn" onclick="sayYes()">YES </button>
-    <button id="noBtn" onclick="growYes()">NO </button>
+    <button class="yes" onclick="sayYes()">YES 💖</button>
+    <button class="no" onclick="sayNo()">NO 🙈</button>
+  </div>
+
+  <div class="letter" id="letter">
+    <p>Hi MAHAL 💕,</p>
+
+    <p>
+        MAHAL KO, magvavalentines na nakapgipon kana ba hahaha em,
+        syempri ako need ko magipon para sa mahal ko nayan kasi dapat bongga
+        planado talaga, kaya yun of course need muna kita yayain dba kasi maya 
+        may kadate kana pala dba hahah, so ayun na nga kahit ano gawin mo 
+        no choice kana dahil akin lang ikaw hahaha. so mahal ko gusto ko yayain
+        kita sa darating na valentines na maging binibini ko, at pramis ko sa'yo
+        papasayahin ko ikaw at papakita ko gaano kita kalovee, asahan ko na magkikita 
+        tayu di man sa mismo araw ng pag-ibig, kahit advance or late na basta makapagdate tayu
+        at mabigay ko gift ko sa'yo , ayun lang ang seeyah sa araw ng mga puso mahal ko
+
+    </p>
+
+    <p>
+      Thank you for being you. and ILOVEEYOUUSOMUCHH MWAA💗
+    </p>
+
+    <p>Happy Valentine’s Day! 🌹</p>
+    <p><b>— Yours 💘</b></p>
+  </div>
+
+  <div class="no-msg" id="noMsg">
+    😭 Okay… but I’ll still bring chocolates 🍫😄
   </div>
 </div>
 
-<div class="message" id="finalMessage">
-  💖 YAYYYY! 💖<br><br>
-  Thank you for choosing YES 😘<br>
-  You just made my Valentine extra special 🌹<br><br>
-  Happy Valentine’s Day! 💘
-</div>
-
 <script>
-  let yesSize = 22;
-  let yesPadding = 40;
-  let noSize = 18;
-  let noPadding = 30;
-  let noClickCount = 0;
-
-  const noMessages = [
-    "😢 SURE KANA BA DYAN?",
-    "🥺 AYAW MO NA BA TALAGA...",
-    "😳 MAY CHOCOLATE AKO DITO...",
-    "😭 YES KANA HHUHUHU!",
-    "💔 YES KANA HINDI NA AKO MAKAHINGA...",
-    "😩 Last chance na OH",
-    "WALA KANA MAGAGAWA AKIN KANA!"
-    
-  ];
-
-  function growYes() {
-    noClickCount++;
-
-    // Show message
-    const msg = noMessages[Math.min(noClickCount - 1, noMessages.length - 1)];
-    document.getElementById("noMsg").innerText = msg;
-
-    // Grow YES / Shrink NO
-    yesSize += 12;
-    yesPadding += 20;
-    noSize = Math.max(10, noSize - 3);
-    noPadding = Math.max(10, noPadding - 5);
-
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-
-    yesBtn.style.fontSize = yesSize + "px";
-    yesBtn.style.padding = "20px " + yesPadding + "px";
-
-    noBtn.style.fontSize = noSize + "px";
-    noBtn.style.padding = "15px " + noPadding + "px";
-
-    // Full screen YES
-    if (yesSize >= 120) {
-      yesBtn.style.position = "fixed";
-      yesBtn.style.top = "0";
-      yesBtn.style.left = "0";
-      yesBtn.style.width = "100vw";
-      yesBtn.style.height = "100vh";
-      yesBtn.style.fontSize = "5rem";
-      yesBtn.innerHTML = "YES 💖💖💖";
-      noBtn.style.display = "none";
-    }
+  function sayYes() {
+    document.getElementById("letter").style.display = "block";
+    document.getElementById("noMsg").style.display = "none";
   }
 
-  function sayYes() {
-    document.getElementById("main").style.display = "none";
-    document.getElementById("finalMessage").style.display = "block";
+  function sayNo() {
+    document.getElementById("noMsg").style.display = "block";
+    document.getElementById("letter").style.display = "none";
   }
 </script>
 
